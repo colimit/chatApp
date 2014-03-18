@@ -5,5 +5,5 @@ ChatApp.Chat = function(socket){
 }
 
 ChatApp.Chat.prototype.sendMessage = function(text){
-  this.socket.emit("message", {text: text})
+  this.socket.emit("message", {text: text});
 }
