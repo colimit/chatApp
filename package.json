@@ -1,0 +1,11 @@
+{
+  "name": "chat_app",
+  "version": "0.0.1",
+  "description": "the best",
+  "dependencies": {
+    "socket.io": "~0.9.6",
+    "mime": "~1.2.7",
+    "node-static": "~0.7.3"
+  },
+  "private": true
+}

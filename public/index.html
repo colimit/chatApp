@@ -1,0 +1,26 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./javascripts/chat.js"></script>
+<script src="./javascripts/chat_ui.js"></script>
+
+<h1>Hello World</h1>
+
+
+<ul id="chats">
+
+</ul>
+
+
+<form id="chat-form" >
+  <label> Send Chat
+    <input type="text" name="chat[body]" id="chat-text"></input>
+  </label>
+  <input type="submit" id="chat-submits" value="Send">
+</form>
+
+<script>
+var ChatApp = window.ChatApp = window.ChatApp || {};
+$(document).ready(function() {
+  var chatUI = new ChatApp.ChatUI();
+});
+</script>
