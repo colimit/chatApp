@@ -10,6 +10,7 @@ ChatApp.ChatUI = function(){
   socket.on("welcome", this.initRoom);
   socket.on("userLeave", this.removeNickname);
   socket.on("userJoin", this.addNickname);
+  socket.on("roomLeave", this.leaveRoom);
 }
 
 ChatApp.ChatUI.prototype.sendChat = function(event){
@@ -68,7 +69,7 @@ ChatApp.ChatUI.prototype.initRoom = function(data){
   var chatContainer = $("<ul data-room='" + data["room"] + "' id=chats-" + data["room"] + ">");
   $("#chats").append(chatContainer);
 
-  var roomTab = $("<button data-room='" + data["room"] + "'>" + data["room"] + "</button>");
+  var roomTab = $("<button data-room='" + data["room"] + "' id=tabs-" + data["room"] + ">" + data["room"] + "</button>");
   $("#tabs").append(roomTab);
 
   roomTab.trigger("click");
@@ -83,4 +84,12 @@ ChatApp.ChatUI.prototype.removeNickname = function(data){
 ChatApp.ChatUI.prototype.addNickname = function(data) {
   $("#chats-" + data["room"]).append("<li>" + "User " + data["nickname"] + " has joined the room.");
   $("#users-" + data["room"]).append("<li id=" + data["nickname"] + ">" + data["nickname"] + "</li>");
+}
+
+ChatApp.ChatUI.prototype.leaveRoom = function(data) {
+  $("#users-" + data["room"]).remove();
+  $("#chats-" + data["room"]).remove();
+  $("#tabs-" + data["room"]).remove();
+  $("h1").empty();
+  $($("#tabs").children()[0]).trigger("click");
 }
